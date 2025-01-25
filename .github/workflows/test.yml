@@ -19,10 +19,10 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
       with:
-        node-version: '12.x'
+        node-version: '22.x'
     - run: npm ci
     - run: npm test
 
@@ -32,11 +32,11 @@ jobs:
   test-vers:
     strategy:
       matrix:
-        node: ['8.x', '10.x', '14.x']
+        node: ['18.x', '20.x', '22.x']
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node }}
     - run: npm ci
@@ -47,11 +47,11 @@ jobs:
   test-old-vers:
     strategy:
       matrix:
-        node: ['0.10.x', '4.x', '6.x']
+        node: ['0.10.x', '4.x', '6.x', '8.x', '12.x', '16.x']
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node }}
     - run: npm install
