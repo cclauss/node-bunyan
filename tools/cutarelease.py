@@ -12,6 +12,7 @@ and create a new changelog section for that new version.
 Conventions:
 - XXX
 """
+from __future__ import print_function
 
 __version_info__ = (1, 0, 7)
 __version__ = '.'.join(map(str, __version_info__))
@@ -112,7 +113,7 @@ def cutarelease(project_name, version_files, dry_run=False):
             "Are you sure you want cut a %s release?\n"
             "This will involved commits and a push." % version,
             default="no")
-        print "* * *"
+        print("* * *")
         if answer != "yes":
             log.info("user abort")
             return
@@ -136,7 +137,7 @@ def cutarelease(project_name, version_files, dry_run=False):
             "The changelog '%s' top section doesn't have the expected\n"
             "'%s' marker. Has this been released already?"
             % (changes_path, nyr), default="yes")
-        print "* * *"
+        print("* * *")
         if answer != "no":
             log.info("abort")
             return
@@ -167,7 +168,7 @@ def cutarelease(project_name, version_files, dry_run=False):
     # Optionally release.
     if exists("package.json"):
         answer = query_yes_no("\n* * *\nPublish to npm?", default="yes")
-        print "* * *"
+        print("* * *")
         if answer == "yes":
             if dry_run:
                 log.info("skipping npm publish (dry-run)")
@@ -175,7 +176,7 @@ def cutarelease(project_name, version_files, dry_run=False):
                 run('npm publish')
     elif exists("setup.py"):
         answer = query_yes_no("\n* * *\nPublish to pypi?", default="yes")
-        print "* * *"
+        print("* * *")
         if answer == "yes":
             if dry_run:
                 log.info("skipping pypi publish (dry-run)")
